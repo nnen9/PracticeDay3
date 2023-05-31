@@ -23,7 +23,6 @@ namespace Day3
 
         public Employee(string fio, double salary, int department)
         {
-
             _fio = fio;
             _salary = salary;
             _department = department;

@@ -22,89 +22,143 @@ namespace Day3
                 new ("Сигида Валерия Романовна", 65000, 4)
             };
 
-            void TaskA()
+            void TaskA1(double argument)
             {
-                Console.WriteLine("Task A");
+                double up = 0;
+                double arg = argument;
                 foreach (var emp in employees)
                 {
-
-                    Console.WriteLine($"Id: {employee.Id()} ФИО: {emp.Fio}, Зарплата: {emp.Salary}, Отдел: {emp.Department}");
+                    up = emp.Salary * arg;
+                    Console.WriteLine("Зарплата " + emp.Fio + " повышена до " + up);
                 }
             }
 
-            void TaskB()
+            void TaskB1()
             {
-                Console.WriteLine("Task B");
-                double summa = 0;
-                foreach (var emp in employees)
-                {
-                    summa += emp.Salary;
-                }
-                Console.WriteLine($"Сумма затрат на зарплату в месяц: {summa}");
-            }
-
-            void TaskC()
-            {
-                Console.WriteLine("Task C");
-                double min = 99999999999;
+                Console.WriteLine("Напишите отдел для определения минимальной зарплаты: ");
+                double depart = Convert.ToDouble(Console.ReadLine());
+                double min = 999999;
                 foreach (var emp in employees)
                 {
                     if (emp.Salary < min)
                     {
-                        min = emp.Salary;
+                        if (emp.Department == depart)
+                        {
+                            min = emp.Salary;
+                        }
                     }
                 }
-                Console.WriteLine("Минимальная зарплата " + min);
+                Console.WriteLine("Минимальная зарплата отдела: " + min);
             }
 
-            void TaskD()
+            void TaskB2()
             {
-                Console.WriteLine("Task D");
+                Console.WriteLine("Напишите отдел для определения максимальной зарплаты: ");
+                double depart = Convert.ToDouble(Console.ReadLine());
                 double max = 0;
                 foreach (var emp in employees)
                 {
+
                     if (emp.Salary > max)
                     {
-                        max = emp.Salary;
+                        if (emp.Department == depart)
+                        {
+                            max = emp.Salary;
+                        }
                     }
                 }
-                Console.WriteLine("Максимальная зарплата " + max);
+                Console.WriteLine("Максимальная зарплата отдела: " + max);
             }
 
-            void TaskE()
+            void TaskB3()
             {
-                Console.WriteLine("Task E");
+                Console.WriteLine("Напишите отдел для определения средней зарплаты: ");
                 int count = 0;
-                double summa = 0;
+                double sum = 0;
+                double depart = Convert.ToDouble(Console.ReadLine());
                 foreach (var emp in employees)
                 {
-                    count++;
-                    summa += emp.Salary;
+                    if (emp.Department == depart)
+                    {
+                        count++;
+                        sum += emp.Salary;
+                    }
                 }
-                Console.WriteLine($"Среднее значение зарплаты: {summa / count}");
+                Console.WriteLine($"Средняя зарплата отдела: {sum / count}");
             }
 
-            void TaskF()
+            void TaskB4(double argument)    
             {
-                Console.WriteLine("Task F");
+                Console.WriteLine("Напишите отдел для увеличения зарплаты: ");
+                double depart = Convert.ToDouble(Console.ReadLine());
+                double up = 0;
+                double arg = argument;
                 foreach (var emp in employees)
                 {
-                    Console.WriteLine("ФИО " + emp.Fio);
+                    if (emp.Department == depart)
+                    {
+                        up = emp.Salary * arg;
+                        Console.WriteLine("Зарплата " + emp.Fio + " увеличина до " + up);
+                    }
                 }
-                Console.ReadKey();
             }
 
-            TaskA();
+            void TaskB5()
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Напишите отдел для показа сотрудников: ");
+                double depart = Convert.ToDouble(Console.ReadLine());
+                foreach (var emp in employees)
+                {
+                    if (emp.Department == depart)
+                    {
+                        Console.WriteLine($"Id: {employee.Id()} ФИО: {emp.Fio}, Зарплата: {emp.Salary}");
+                    }
+                }
+            }
+
+            void TaskC1()
+            {
+                Console.WriteLine("Вывод зарплат меньше чем: ");
+                double val = Convert.ToDouble(Console.ReadLine());
+                foreach (var emp in employees)
+                {
+                    if (emp.Salary < val)
+                    {
+                        Console.WriteLine($"Id: {employee.Id()} ФИО: {emp.Fio}, Зарплата: {emp.Salary}");
+                    }
+                }
+            }
+
+            void TaskC2()
+            {
+                Console.WriteLine("Вывод зарплат больше чем: ");
+                double val = Convert.ToDouble(Console.ReadLine());
+                foreach (var emp in employees)
+                {
+                    if (emp.Salary > val)
+                    {
+                        Console.WriteLine($"Id: {employee.Id()} ФИО: {emp.Fio}, Зарплата: {emp.Salary}");
+                    }
+                }
+            }
+
+            TaskA1(1.1);
             Console.WriteLine();
-            TaskB();
+            TaskB1();
             Console.WriteLine();
-            TaskC();
+            TaskB2();
             Console.WriteLine();
-            TaskD();
+            TaskB3();
             Console.WriteLine();
-            TaskE();
+            TaskB4(1.1);
             Console.WriteLine();
-            TaskF();
+            TaskB5();
+            Console.WriteLine();
+            TaskC1();
+            Console.WriteLine();
+            TaskC2();
+            Console.WriteLine();
         }
     }
 }
